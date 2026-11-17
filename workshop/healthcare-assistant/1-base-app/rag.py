@@ -1,4 +1,4 @@
-"""RAG retrieval for the healthcare assistant using PostgreSQL/pgvector."""
+"""RAG retrieval for the call-summary assistant using PostgreSQL/pgvector."""
 import asyncio
 import os
 from typing import Optional
@@ -16,7 +16,7 @@ from setup_env import setup_environment
 _rag_cache = {}
 
 
-class HealthcareRAGSystem:
+class CallSummaryRAGSystem:
     """RAG system with eager initialization."""
 
     def __init__(self, top_k: int = 5, model_name: Optional[str] = None):
@@ -65,14 +65,15 @@ class HealthcareRAGSystem:
             llm = ChatOpenAI(
                 model=llm_model,
                 temperature=0.1,
-                name="Healthcare RAG Assistant",
+                name="Policy RAG Assistant",
             )
 
             retrieval_qa_chat_prompt = ChatPromptTemplate.from_messages(
                 [
                     (
                         "system",
-                        "Answer any use questions based solely on the context below:\n\n"
+                        "아래 컨텍스트에만 근거하여 한국어로 답하세요. "
+                        "컨텍스트에 없는 내용은 모른다고 답하세요:\n\n"
                         "<context>\n{context}\n</context>",
                     ),
                     MessagesPlaceholder("chat_history", optional=True),
@@ -106,14 +107,14 @@ class HealthcareRAGSystem:
             return f"❌ Error during RAG search: {str(e)}"
 
 
-def get_rag_system(top_k: int | None = None, model_name: Optional[str] = None) -> HealthcareRAGSystem:
+def get_rag_system(top_k: int | None = None, model_name: Optional[str] = None) -> CallSummaryRAGSystem:
     if top_k is None:
         app_config = load_config()
         top_k = app_config.get("rag", {}).get("top_k", 5)
 
     cache_key = f"{top_k}_{model_name or 'default'}"
     if cache_key not in _rag_cache:
-        _rag_cache[cache_key] = HealthcareRAGSystem(top_k, model_name=model_name)
+        _rag_cache[cache_key] = CallSummaryRAGSystem(top_k, model_name=model_name)
     return _rag_cache[cache_key]
 
 
@@ -122,12 +123,12 @@ def create_rag_tool(top_k: int | None = None, model_name: Optional[str] = None):
     rag_system = get_rag_system(top_k, model_name=model_name)
 
     @tool
-    async def retrieve_healthcare_documents(query: str) -> str:
-        """Retrieve information related to a query from the healthcare knowledge base."""
+    async def retrieve_policy_documents(query: str) -> str:
+        """Retrieve information related to a query from the policy and guide knowledge base."""
         return await rag_system.search(query)
 
-    retrieve_healthcare_documents.name = "retrieve_healthcare_documents"
-    retrieve_healthcare_documents.description = (
-        "Retrieve information from the healthcare knowledge base"
+    retrieve_policy_documents.name = "retrieve_policy_documents"
+    retrieve_policy_documents.description = (
+        "Retrieve information from the carrier policy and summary guide knowledge base"
     )
-    return retrieve_healthcare_documents
+    return retrieve_policy_documents

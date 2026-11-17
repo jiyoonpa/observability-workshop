@@ -1,9 +1,10 @@
 """
-Healthcare domain tools.
+Call-summary domain tools.
 
-- get_patient_info: Text-to-SQL lookup against the patient registry in PostgreSQL
-- delete_patient_record: Text-to-SQL delete against the patient registry in PostgreSQL
-- search_medicine_qa: semantic vector search against the QA knowledge base
+- get_call_transcript: fixed parameterized lookup of a call + transcript
+- get_customer_profile: fixed parameterized lookup of a customer
+- search_policy_guide: semantic search against carrier policy + summary guide
+- send_summary: mock SMS send of a summary (no real delivery)
 """
 import json
 import logging
@@ -14,11 +15,10 @@ from langchain_postgres import PGVector
 from config import DOMAIN, load_config
 from helpers.pgvector_utils import get_pgvector_store
 from helpers.sql_utils import execute_sql, relational_table_name
-from helpers.text_to_sql_utils import generate_sql
 from rag import get_rag_system
 
-_TABLE_SUFFIX = "patient"
-_ID_COLUMN = "patient_id"
+_CALL_TABLE = relational_table_name(DOMAIN, "call")
+_CUSTOMER_TABLE = relational_table_name(DOMAIN, "customer")
 
 _vector_store: Optional[PGVector] = None
 _embedding_model: Optional[str] = None
@@ -46,116 +46,92 @@ def _get_vector_store() -> Tuple[PGVector, str]:
     return _vector_store, collection_name
 
 
-async def _execute_patient_sql(sql: str) -> str:
-    """Execute a SQL lookup against the patient registry."""
-    try:
-        result = execute_sql(sql)
-        return json.dumps(result)
-    except Exception as e:
-        return json.dumps({"error": str(e), "sql": sql})
+def _dumps(payload) -> str:
+    # ensure_ascii=False keeps Korean readable for the LLM and in traces.
+    return json.dumps(payload, ensure_ascii=False, default=str)
 
 
-async def _execute_patient_delete_sql(sql: str) -> str:
-    """Execute a SQL delete against the patient registry."""
-    try:
-        result = execute_sql(sql)
-        return json.dumps(result)
-    except Exception as e:
-        return json.dumps({"error": str(e), "sql": sql})
-
-
-async def get_patient_info(patient_id: str) -> str:
-    """Retrieve patient information by their patient ID."""
-    patient_id = patient_id.strip().upper()
-    q = (patient_id or "").strip()
-    if not q:
-        return json.dumps({"error": "patient_id is required"})
-
-    app_config = load_config()
-    model = app_config.get("model", {}).get("default_model", "bedrock-default")
-    table_name = relational_table_name(DOMAIN, _TABLE_SUFFIX)
+async def get_call_transcript(call_id: str) -> str:
+    """Retrieve a call record with its transcript by call ID."""
+    call_id = (call_id or "").strip().upper()
+    if not call_id:
+        return _dumps({"error": "call_id is required"})
 
     try:
-        sql = await generate_sql(
-            domain_name=DOMAIN,
-            table_suffix=_TABLE_SUFFIX,
-            id_column=_ID_COLUMN,
-            record_id=q,
-            operation="select",
-            model=model,
-            use_case_identifier="patient_id",
-            use_case_value=patient_id,
+        result = execute_sql(
+            "SELECT call_id, customer_id, call_datetime, duration_sec, agent_name, "
+            f'category, transcript FROM "{_CALL_TABLE}" WHERE call_id = :call_id',
+            {"call_id": call_id},
         )
     except Exception as e:
-        return json.dumps({"error": str(e), "patient_id": q})
+        return _dumps({"error": str(e), "call_id": call_id})
 
-    raw = await _execute_patient_sql(sql)
-    try:
-        result = json.loads(raw)
-    except json.JSONDecodeError:
-        result = {"error": "Invalid SQL execution response", "raw": raw}
-
-    if "error" not in result:
-        result["query"] = q
-        result["table"] = table_name
-
-    return json.dumps(result)
+    if not result["rows"]:
+        return _dumps({"error": f"call not found: {call_id}"})
+    return _dumps(result["rows"][0])
 
 
-async def delete_patient_record(patient_id: str) -> str:
-    """Permanently delete a patient record from the registry by patient ID."""
-    patient_id = patient_id.strip().upper()
-    q = (patient_id or "").strip()
-    if not q:
-        return json.dumps({"error": "patient_id is required"})
-
-    app_config = load_config()
-    model = app_config.get("model", {}).get("default_model", "bedrock-default")
-    table_name = relational_table_name(DOMAIN, _TABLE_SUFFIX)
+async def get_customer_profile(customer_id: str) -> str:
+    """Retrieve a customer profile by customer ID."""
+    customer_id = (customer_id or "").strip().upper()
+    if not customer_id:
+        return _dumps({"error": "customer_id is required"})
 
     try:
-        sql = await generate_sql(
-            domain_name=DOMAIN,
-            table_suffix=_TABLE_SUFFIX,
-            id_column=_ID_COLUMN,
-            record_id=q,
-            operation="delete",
-            model=model,
-            use_case_identifier="patient_id",
-            use_case_value=patient_id,
+        result = execute_sql(
+            "SELECT customer_id, name, phone, address, plan, join_date "
+            f'FROM "{_CUSTOMER_TABLE}" WHERE customer_id = :customer_id',
+            {"customer_id": customer_id},
         )
     except Exception as e:
-        return json.dumps({"error": str(e), "patient_id": q})
+        return _dumps({"error": str(e), "customer_id": customer_id})
 
-    raw = await _execute_patient_delete_sql(sql)
-    try:
-        result = json.loads(raw)
-    except json.JSONDecodeError:
-        result = {"error": "Invalid SQL execution response", "raw": raw}
-
-    if "error" not in result:
-        result["query"] = q
-        result["table"] = table_name
-
-    return json.dumps(result)
+    if not result["rows"]:
+        return _dumps({"error": f"customer not found: {customer_id}"})
+    return _dumps(result["rows"][0])
 
 
-async def search_medicine_qa(query: str) -> str:
-    """Search the Medicine knowledge base using semantic vector search."""
+async def search_policy_guide(query: str) -> str:
+    """Search carrier policy and summary guide using semantic vector search."""
     q = query
     try:
         _get_vector_store()
     except Exception as e:
-        return json.dumps({"error": str(e), "query": q})
+        return _dumps({"error": str(e), "query": q})
 
     try:
-        rag_system = get_rag_system(top_k=1)
+        rag_system = get_rag_system(top_k=3)
         raw = await rag_system.search(q)
     except Exception as e:
-        logging.exception("search_medicine_qa search failed")
-        return json.dumps({"error": str(e), "query": q})
+        logging.exception("search_policy_guide search failed")
+        return _dumps({"error": str(e), "query": q})
 
-    return json.dumps([raw])
+    return _dumps([raw])
 
 
-TOOLS = [get_patient_info, delete_patient_record, search_medicine_qa]
+async def send_summary(call_id: str, summary: str, to_phone: Optional[str] = None) -> str:
+    """Mock-send a call summary by SMS. No real message is delivered."""
+    call_id = (call_id or "").strip().upper()
+    if not call_id:
+        return _dumps({"error": "call_id is required"})
+
+    try:
+        rows = execute_sql(
+            f'SELECT c.call_id, u.phone FROM "{_CALL_TABLE}" c '
+            f'JOIN "{_CUSTOMER_TABLE}" u ON u.customer_id = c.customer_id '
+            "WHERE c.call_id = :call_id",
+            {"call_id": call_id},
+        )["rows"]
+    except Exception as e:
+        return _dumps({"error": str(e), "call_id": call_id})
+
+    if not rows:
+        return _dumps({"error": f"call not found: {call_id}"})
+
+    recipient = (to_phone or "").strip() or rows[0]["phone"]
+    return _dumps(
+        {"status": "sent (mock)", "call_id": call_id, "to": recipient, "summary": summary}
+    )
+
+
+TOOLS = [get_call_transcript, get_customer_profile, search_policy_guide, send_summary]

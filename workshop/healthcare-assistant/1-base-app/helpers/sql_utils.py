@@ -96,6 +96,9 @@ def load_relational_csv(
         for col in columns:
             if col == pk_col:
                 continue
+            # 긴 TEXT 컬럼(통화 원문 등)은 btree 인덱스 크기 한도를 넘을 수 있어 건너뜀
+            if _infer_pg_type(df[col]) == "TEXT" and df[col].astype(str).str.len().max() > 256:
+                continue
             conn.execute(
                 text(
                     f'CREATE INDEX IF NOT EXISTS "{table_name}_{col}_idx" '
@@ -149,14 +152,14 @@ def _sql_operation(sql: str) -> str:
     return "unknown"
 
 
-def execute_sql(sql: str) -> Dict[str, Any]:
+def execute_sql(sql: str, params: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     """Execute a SQL statement and return a JSON-serializable result."""
     sql_clean = (sql or "").strip().rstrip(";")
     operation = _sql_operation(sql_clean)
     engine = create_engine(get_postgres_connection_string())
 
     with engine.begin() as conn:
-        result = conn.execute(text(sql_clean))
+        result = conn.execute(text(sql_clean), params or {})
         if operation == "select":
             rows = [dict(row) for row in result.mappings()]
             count = len(rows)

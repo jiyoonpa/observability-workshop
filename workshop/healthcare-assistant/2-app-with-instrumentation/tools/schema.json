@@ -1,44 +1,66 @@
 [
-    {
-      "name": "get_patient_info",
-      "description": "Retrieve patient's details by their ID, including name, address, phone number, patient type, and prescription",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "patient_id": {
-            "type": "string",
-            "description": "The patient's unique identifier (e.g., 'P001', 'P005')"
-          }
-        },
-        "required": ["patient_id"]
-      }
-    },
-    {
-      "name": "delete_patient_record",
-      "description": "Permanently delete a patient record from the registry by their patient ID",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "patient_id": {
-            "type": "string",
-            "description": "The patient's unique identifier to delete (e.g., 'P001', 'P005')"
-          }
-        },
-        "required": ["patient_id"]
-      }
-    },
-    {
-      "name": "search_medicine_qa",
-      "description": "Search the Medicine knowledge base to answer questions about medications, including dosage, side effects, and interactions",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "query": {
-            "type": "string",
-            "description": "The question or topic to search for (e.g., 'Lisinopril', 'Metformin', 'Aspirin')"
-          }
-        },
-        "required": ["query"]
-      }
+  {
+    "name": "get_call_transcript",
+    "description": "통화 ID로 통화 녹취 원문과 통화 정보(일시, 상담원, 분류, 고객 ID)를 조회한다. 통화 요약 전에 반드시 먼저 호출한다.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "call_id": {
+          "type": "string",
+          "description": "통화 고유 ID (예: 'CALL-001', 'CALL-005')"
+        }
+      },
+      "required": ["call_id"]
     }
-  ]
+  },
+  {
+    "name": "get_customer_profile",
+    "description": "고객 ID로 고객 정보(이름, 전화번호, 주소, 요금제, 가입일)를 조회한다.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "customer_id": {
+          "type": "string",
+          "description": "고객 고유 ID (예: 'U001', 'U008')"
+        }
+      },
+      "required": ["customer_id"]
+    }
+  },
+  {
+    "name": "search_policy_guide",
+    "description": "통신사 정책(요금제, 위약금, 이전 설치, 장애 보상 등)과 통화 요약 작성 가이드를 의미 검색한다.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string",
+          "description": "검색할 질문이나 주제 (예: '이전 설치 비용', '해지 통화 요약 방법')"
+        }
+      },
+      "required": ["query"]
+    }
+  },
+  {
+    "name": "send_summary",
+    "description": "통화 요약을 고객에게 문자로 발송한다. 수신 번호를 지정하지 않으면 해당 통화 고객의 번호로 발송한다.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "call_id": {
+          "type": "string",
+          "description": "요약 대상 통화 ID"
+        },
+        "summary": {
+          "type": "string",
+          "description": "발송할 요약 본문"
+        },
+        "to_phone": {
+          "type": "string",
+          "description": "수신 번호(선택). 생략하면 통화 고객의 번호"
+        }
+      },
+      "required": ["call_id", "summary"]
+    }
+  }
+]

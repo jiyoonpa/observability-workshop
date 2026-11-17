@@ -1,226 +1,26 @@
 question,answer
-Lisinopril,"
-            Generic Name: Lisinopril
-            Drug Class: ACE Inhibitor
-            Primary Indication: Hypertension and Heart Failure
-            Mechanism of Action: Inhibits conversion of angiotensin I to angiotensin II
-            Common Dosage: 10-40 mg once daily
-            Administration: Oral; take with or without food
-            Common Side Effects: Dry cough (10-15%); dizziness; headache; fatigue
-            Serious Side Effects: Angioedema; hyperkalemia; acute kidney injury; hypotension
-            Contraindications: Pregnancy; history of angioedema with ACE inhibitors; bilateral renal artery stenosis
-            Drug Interactions: NSAIDs (reduced efficacy); potassium supplements (hyperkalemia); lithium (increased levels)
-            Monitoring Requirements: Blood pressure; serum creatinine and potassium at baseline and periodically; monitor for signs of angioedema
-            Pregnancy Category: Category D - Contraindicated
-            Cost Tier: Low (generic available)
-        "
-Metformin,"
-            Generic Name: Metformin
-            Drug Class: Biguanide
-            Primary Indication: Type 2 Diabetes
-            Mechanism of Action: Decreases hepatic glucose production; increases insulin sensitivity
-            Common Dosage: 500-2000 mg daily (divided doses)
-            Administration: Oral; take with meals to reduce GI upset
-            Common Side Effects: Nausea; diarrhea; abdominal discomfort; metallic taste; vitamin B12 deficiency
-            Serious Side Effects: Lactic acidosis (rare but serious); severe hypoglycemia when combined with insulin/sulfonylureas
-            Contraindications: Severe renal impairment (eGFR <30); metabolic acidosis; acute heart failure
-            Drug Interactions: Contrast dyes (hold 48 hours before/after); alcohol (increased lactic acidosis risk)
-            Monitoring Requirements: Renal function (eGFR) before starting and annually; vitamin B12 levels annually; glucose monitoring
-            Pregnancy Category: Category B - Generally safe
-            Cost Tier: Low (generic available)
-        "
-Atorvastatin,"
-            Generic Name: Atorvastatin
-            Drug Class: Statin (HMG-CoA Reductase Inhibitor)
-            Primary Indication: Hyperlipidemia and ASCVD prevention
-            Mechanism of Action: Inhibits cholesterol synthesis in the liver
-            Common Dosage: 10-80 mg once daily
-            Administration: Oral; take any time of day with or without food
-            Common Side Effects: Muscle aches; headache; nausea; diarrhea; elevated liver enzymes
-            Serious Side Effects: Rhabdomyolysis; liver failure; new-onset diabetes; memory problems
-            Contraindications: Active liver disease; pregnancy; breastfeeding
-            Drug Interactions: Strong CYP3A4 inhibitors increase levels (clarithromycin erythromycin); grapefruit juice; fibrates increase myopathy risk
-            Monitoring Requirements: Lipid panel at baseline and 4-12 weeks; liver enzymes at baseline; monitor for muscle symptoms
-            Pregnancy Category: Category X - Contraindicated
-            Cost Tier: Low (generic available)
-        "
-Amlodipine,"
-            Generic Name: Amlodipine
-            Drug Class: Calcium Channel Blocker (Dihydropyridine)
-            Primary Indication: Hypertension and Angina
-            Mechanism of Action: Blocks calcium entry into vascular smooth muscle causing vasodilation
-            Common Dosage: 2.5-10 mg once daily
-            Administration: Oral; take with or without food
-            Common Side Effects: Peripheral edema (ankle swelling); headache; dizziness; flushing; palpitations
-            Serious Side Effects: Severe hypotension; worsening heart failure; MI (rare)
-            Contraindications: Severe aortic stenosis; cardiogenic shock
-            Drug Interactions: CYP3A4 inhibitors increase levels; simvastatin (limit simvastatin to 20 mg daily)
-            Monitoring Requirements: Blood pressure monitoring; heart rate; signs of peripheral edema
-            Pregnancy Category: Category C - Use with caution
-            Cost Tier: Low (generic available)
-        "
-Levothyroxine,"
-            Generic Name: Levothyroxine Sodium
-            Drug Class: Thyroid Hormone
-            Primary Indication: Hypothyroidism
-            Mechanism of Action: Synthetic T4; converted to active T3 in peripheral tissues
-            Common Dosage: 25-200 mcg once daily (individualized)
-            Administration: Oral; take on empty stomach 30-60 min before breakfast
-            Common Side Effects: Weight changes; headache; insomnia; nervousness; heat intolerance
-            Serious Side Effects: Cardiac arrhythmias; angina; MI; bone loss with excessive doses
-            Contraindications: Untreated thyrotoxicosis; acute MI; uncorrected adrenal insufficiency
-            Drug Interactions: Decreases absorption: calcium iron antacids soy PPIs; increases warfarin effect; decreases effect of diabetes medications
-            Monitoring Requirements: TSH at baseline 6-8 weeks after dose changes then annually; free T4 if indicated; heart rate and blood pressure
-            Pregnancy Category: Category A - Safe in pregnancy
-            Cost Tier: Low (generic available)
-        "
-Aspirin,"
-            Generic Name: Acetylsalicylic Acid
-            Drug Class: NSAID/Antiplatelet
-            Primary Indication: Pain; fever; cardiovascular disease prevention
-            Mechanism of Action: Irreversibly inhibits COX-1 and COX-2; inhibits platelet aggregation
-            Common Dosage: 81-325 mg daily (low-dose); 325-650 mg q4-6h PRN (analgesic)
-            Administration: Oral; enteric-coated formulations available
-            Common Side Effects: Dyspepsia; nausea; stomach upset; easy bruising
-            Serious Side Effects: GI bleeding; hemorrhagic stroke; allergic reactions; Reye's syndrome (children)
-            Contraindications: Active GI bleeding; hemophilia; aspirin allergy; children with viral infections
-            Drug Interactions: Anticoagulants (increased bleeding); NSAIDs (increased GI toxicity); methotrexate (increased toxicity)
-            Monitoring Requirements: No routine monitoring for low-dose; monitor for signs of bleeding; annual CBC if long-term use
-            Pregnancy Category: Category D in 3rd trimester
-            Cost Tier: Low (OTC available)
-        "
-Losartan,"
-            Generic Name: Losartan
-            Drug Class: Angiotensin Receptor Blocker (ARB)
-            Primary Indication: Hypertension; diabetic nephropathy
-            Mechanism of Action: Blocks angiotensin II at AT1 receptors causing vasodilation
-            Common Dosage: 25-100 mg once or twice daily
-            Administration: Oral; take with or without food
-            Common Side Effects: Dizziness; upper respiratory infection; fatigue; back pain
-            Serious Side Effects: Hyperkalemia; acute kidney injury; hypotension; angioedema (rare)
-            Contraindications: Pregnancy; bilateral renal artery stenosis
-            Drug Interactions: NSAIDs (reduced efficacy); potassium supplements (hyperkalemia); lithium (increased levels)
-            Monitoring Requirements: Blood pressure; serum creatinine and potassium at baseline and periodically
-            Pregnancy Category: Category D - Contraindicated
-            Cost Tier: Low (generic available)
-        "
-Metoprolol,"
-            Generic Name: Metoprolol
-            Drug Class: Beta-Blocker (Selective Beta-1)
-            Primary Indication: Hypertension; angina; heart failure; MI
-            Mechanism of Action: Blocks beta-1 adrenergic receptors; reduces heart rate and contractility
-            Common Dosage: 25-200 mg twice daily (tartrate); 25-400 mg daily (succinate ER)
-            Administration: Oral; take with or at same time relative to meals consistently
-            Common Side Effects: Fatigue; dizziness; bradycardia; cold extremities; depression
-            Serious Side Effects: Severe bradycardia; heart block; severe hypotension; bronchospasm; worsening heart failure
-            Contraindications: Sinus bradycardia; 2nd/3rd degree heart block; cardiogenic shock; severe peripheral arterial disease; untreated pheochromocytoma
-            Drug Interactions: Calcium channel blockers (bradycardia hypotension); insulin (masks hypoglycemia); CYP2D6 inhibitors increase levels
-            Monitoring Requirements: Heart rate and blood pressure; EKG if indicated; glucose in diabetics; signs/symptoms of heart failure
-            Pregnancy Category: Category C - Use with caution
-            Cost Tier: Low (generic available)
-        "
-Omeprazole,"
-            Generic Name: Omeprazole
-            Drug Class: Proton Pump Inhibitor (PPI)
-            Primary Indication: GERD; peptic ulcers; Zollinger-Ellison syndrome
-            Mechanism of Action: Irreversibly inhibits gastric H+/K+ ATPase (proton pump)
-            Common Dosage: 20-40 mg once daily
-            Administration: Oral; take 30-60 min before breakfast; do not crush or chew delayed-release capsules
-            Common Side Effects: Headache; nausea; diarrhea; abdominal pain; vitamin B12 deficiency
-            Serious Side Effects: C. difficile infection; bone fractures (long-term use); hypomagnesemia; kidney disease
-            Contraindications: Hypersensitivity to PPIs; concurrent use with rilpivirine
-            Drug Interactions: Clopidogrel (reduced activation); warfarin (increased INR); methotrexate (increased levels)
-            Monitoring Requirements: Magnesium levels if prolonged use or with diuretics/digoxin; vitamin B12 if long-term use; assess need for continued therapy periodically
-            Pregnancy Category: Category C - Use with caution
-            Cost Tier: Low (generic and OTC available)
-        "
-Albuterol,"
-            Generic Name: Albuterol Sulfate
-            Drug Class: Short-Acting Beta-2 Agonist (SABA)
-            Primary Indication: Asthma; COPD (acute bronchospasm)
-            Mechanism of Action: Relaxes bronchial smooth muscle by stimulating beta-2 receptors
-            Common Dosage: 2 puffs (90 mcg/puff) q4-6h PRN; nebulizer 2.5 mg q4-6h PRN
-            Administration: Inhalation; shake MDI before use; rinse mouth after
-            Common Side Effects: Tremor; nervousness; tachycardia; palpitations; headache
-            Serious Side Effects: Paradoxical bronchospasm; severe hypokalemia; cardiac arrhythmias
-            Contraindications: Hypersensitivity to albuterol or any component
-            Drug Interactions: Beta-blockers (reduced bronchodilator effect); diuretics (increased hypokalemia); MAO inhibitors (cardiovascular effects)
-            Monitoring Requirements: Heart rate and blood pressure; frequency of use (>2 times/week indicates poor control); potassium if high doses
-            Pregnancy Category: Category C - Use with caution
-            Cost Tier: Low (generic available)
-        "
-Gabapentin,"
-            Generic Name: Gabapentin
-            Drug Class: Anticonvulsant/Neuropathic Pain Agent
-            Primary Indication: Neuropathic pain; partial seizures; postherpetic neuralgia
-            Mechanism of Action: Unknown; structurally related to GABA but doesn't bind GABA receptors
-            Common Dosage: 300-3600 mg daily in 3 divided doses
-            Administration: Oral; take with or without food; requires renal dose adjustment
-            Common Side Effects: Dizziness; somnolence; ataxia; fatigue; peripheral edema
-            Serious Side Effects: Respiratory depression (with opioids); suicidal thoughts; severe skin reactions (rare)
-            Contraindications: Hypersensitivity to gabapentin
-            Drug Interactions: Opioids (increased respiratory depression); antacids (reduced absorption - separate by 2 hours)
-            Monitoring Requirements: No routine lab monitoring required; assess for suicidal ideation; renal function for dose adjustment
-            Pregnancy Category: Category C - Use with caution
-            Cost Tier: Low (generic available)
-        "
-Sertraline,"
-            Generic Name: Sertraline
-            Drug Class: Selective Serotonin Reuptake Inhibitor (SSRI)
-            Primary Indication: Depression; anxiety; OCD; PTSD
-            Mechanism of Action: Inhibits serotonin reuptake in CNS increasing synaptic serotonin
-            Common Dosage: 25-200 mg once daily
-            Administration: Oral; take with or without food; morning or evening dosing
-            Common Side Effects: Nausea; diarrhea; insomnia; sexual dysfunction; increased sweating
-            Serious Side Effects: Serotonin syndrome; suicidal ideation (especially young adults); bleeding; hyponatremia; seizures
-            Contraindications: Concurrent use with MAO inhibitors (14 day washout required); concurrent use with pimozide
-            Drug Interactions: MAO inhibitors (serotonin syndrome); NSAIDs/anticoagulants (increased bleeding); tamoxifen (reduced efficacy); other serotonergic drugs
-            Monitoring Requirements: Mental status at each visit; suicidal ideation especially first 1-2 months; sodium if risk factors for hyponatremia
-            Pregnancy Category: Category C - Use with caution
-            Cost Tier: Low (generic available)
-        "
-Hydrochlorothiazide,"
-            Generic Name: Hydrochlorothiazide (HCTZ)
-            Drug Class: Thiazide Diuretic
-            Primary Indication: Hypertension; edema
-            Mechanism of Action: Inhibits sodium reabsorption in distal tubule increasing urine output
-            Common Dosage: 12.5-50 mg once daily
-            Administration: Oral; take in morning to avoid nocturia
-            Common Side Effects: Hypokalemia; dizziness; muscle cramps; increased urination
-            Serious Side Effects: Severe electrolyte abnormalities; hypotension; hyperglycemia; hyperuricemia (gout); photosensitivity
-            Contraindications: Anuria; sulfonamide allergy
-            Drug Interactions: NSAIDs (reduced antihypertensive effect); lithium (increased levels); digoxin (hypokalemia increases toxicity)
-            Monitoring Requirements: Blood pressure; electrolytes (sodium potassium) and renal function at baseline and periodically; glucose and lipids
-            Pregnancy Category: Category B - Generally safe
-            Cost Tier: Low (generic available)
-        "
-Warfarin,"
-            Generic Name: Warfarin
-            Drug Class: Vitamin K Antagonist (Anticoagulant)
-            Primary Indication: DVT/PE; atrial fibrillation; mechanical heart valves
-            Mechanism of Action: Inhibits vitamin K-dependent clotting factors (II VII IX X)
-            Common Dosage: Individualized dosing based on INR (typically 2-10 mg daily)
-            Administration: Oral; take same time daily; consistent vitamin K intake
-            Common Side Effects: Bleeding; bruising; nausea
-            Serious Side Effects: Major hemorrhage; skin necrosis; purple toe syndrome
-            Contraindications: Pregnancy; active major bleeding; severe hypertension; recent surgery
-            Drug Interactions: EXTENSIVE - antibiotics NSAIDs acetaminophen many drugs affect INR
-            Monitoring Requirements: INR: daily initially then 2-3 times/week then weekly then every 4 weeks when stable; CBC; assess for bleeding
-            Pregnancy Category: Category X - Contraindicated
-            Cost Tier: Low (generic available)
-        "
-Prednisone,"
-            Generic Name: Prednisone
-            Drug Class: Corticosteroid
-            Primary Indication: Inflammatory conditions; autoimmune diseases; asthma
-            Mechanism of Action: Broad anti-inflammatory and immunosuppressive effects
-            Common Dosage: 5-60 mg daily (dose varies widely by indication)
-            Administration: Oral; take with food; taper slowly when discontinuing after >2 weeks use
-            Common Side Effects: Increased appetite; weight gain; insomnia; mood changes; hyperglycemia
-            Serious Side Effects: Adrenal suppression; infections; osteoporosis; peptic ulcers; cataracts; hyperglycemia
-            Contraindications: Systemic fungal infections
-            Drug Interactions: NSAIDs (increased GI bleed risk); vaccines (reduced efficacy live vaccines contraindicated); diabetes drugs (antagonizes effect)
-            Monitoring Requirements: Blood pressure and glucose regularly especially if diabetic; bone density if long-term use; growth in children; eye exams
-            Pregnancy Category: Category C - Use with caution
-            Cost Tier: Low (generic available)
-        "
+[정책] 요금제별 차이는 무엇인가요,"베이직이 기본 요금제이며 스탠다드는 베이직보다 월 8,000원, 프리미엄은 베이직보다 월 12,000원 높다. 프리미엄은 4K 채널과 VOD 월 5회 무료가 포함된다. 요금제 변경은 신청 후 약 10분 내 적용된다."
+[정책] VOD 유료 콘텐츠 결제는 어떻게 청구되나요,"VOD 유료 콘텐츠는 건별로 결제되어 월 청구서에 합산된다. 고객이 원하면 유료 결제 전 비밀번호 확인을 설정할 수 있으며 상담원이 즉시 설정해 드린다."
+[정책] 셋톱박스를 추가하면 요금이 얼마인가요,"두 번째 셋톱박스부터 추가 임대료 월 5,000원이 청구서에 별도 항목으로 청구된다."
+[정책] 셋톱박스 추가 무료 프로모션은 누구에게 적용되나요,"첫 3개월 무료 프로모션은 신규 가입 고객에게만 적용되며 기존 고객은 대상이 아니다."
+[정책] 요금 감면 요청은 어떻게 처리하나요,"상담원이 감면을 확정할 수 없다. 담당 부서에 검토를 요청하고 결과는 영업일 기준 3일 내 문자로 안내한다. 상담 중에는 확정이 아니라 검토 요청이라고 안내해야 한다."
+[정책] 화면 끊김 등 장애 신고는 어떻게 처리하나요,"셋톱박스 재부팅을 먼저 안내하고, 해결되지 않으면 회선 점검을 진행한다. 신호 불안정이 확인되면 기사 방문을 예약하며 방문 시간은 2시간 단위로 안내한다."
+[정책] 장애가 오래 지속되면 보상이 있나요,"장애가 연속 7일 이상 지속된 경우 기사 방문을 긴급 접수하고 1개월 요금 감면을 안내할 수 있다. 감면은 담당 부서 처리 후 확정된다."
+[정책] 셋톱박스가 계속 재부팅될 때는 어떻게 하나요,"원격 펌웨어 재설정을 먼저 시도하고 10~15분 지켜본다. 증상이 계속되면 기기 교체를 접수하며, 새 기기는 택배로 발송하고 기존 기기는 회수한다."
+[정책] 약정 중 해지하면 위약금이 얼마인가요,"약정 기간 중 해지하면 잔여 약정 개월 수에 따라 위약금이 발생한다. 정확한 금액은 상담 시점에 시스템으로 조회하여 안내한다. 해지 전에 요금제 하향 같은 대안을 먼저 안내한다."
+[정책] 이전 설치 비용은 얼마인가요,"이전 설치 비용은 33,000원이며 첫 달 요금에 합산 청구된다. 2026년 7월부터 조정된 금액이고, 프리미엄 고객은 10% 할인되어 29,700원이 청구된다."
+[정책] 이전 설치 희망일이 마감되었을 때는 어떻게 하나요,"가장 빠른 가능 일정을 안내한다. 취소 건이 생기면 연락하는 대기 신청도 가능하나 확정은 보장되지 않는다. 대기 신청과 가능한 일정 예약은 동시에 할 수 있다."
+[정책] 이전 설치 기간에 TV를 볼 수 있는 방법이 있나요,"모바일 앱의 ixi 라이브 채널을 이용할 수 있고, 이전 기간 동안 앱 이용료는 무료로 처리한다."
+[정책] 자동이체 카드를 변경하려면 어떻게 하나요,"성함과 생년월일 6자리로 본인 확인을 한 뒤 변경하며 다음 달 청구분부터 적용된다. 주민등록번호 전체나 카드번호 전체는 요구하지 않으며, 고객이 말하더라도 기록에 남기지 않는다."
+[정책] 키즈 채널 패키지는 얼마인가요,"월 5,500원이며 신청 다음 날부터 시청할 수 있다. 요금은 다음 달 청구서에 합산된다."
+[정책] 환급금을 이유로 계좌번호나 OTP를 요구받았다는 문의는 어떻게 하나요,"당사는 환급을 이유로 계좌번호나 OTP를 요구하지 않는다. 보이스피싱으로 안내하고, 정보를 이미 알려준 경우 거래 은행에 지급정지를 요청하고 경찰청 182에 신고하도록 안내한다."
+[가이드] 요약 형식은 어떻게 작성하나요,"요약은 [요약], [고객 요청], [처리 결과], [후속 조치] 4개 항목으로 작성하고 전체 5문장 이내로 유지한다."
+[가이드] 요약에 반드시 포함할 내용은 무엇인가요,"고객 요청 사유, 상담원이 안내한 금액·날짜·조건, 처리 여부, 후속 일정(방문·콜백)을 반드시 포함한다."
+[가이드] 통화에 없던 내용을 요약에 넣어도 되나요,"통화에 근거가 없는 내용은 절대 추가하지 않는다. 확인되지 않은 사항은 '통화 중 확인되지 않음'으로 표기한다."
+[가이드] 개인정보는 요약에 어떻게 표기하나요,"카드번호, 주민번호, 계좌번호, OTP 등 민감정보는 요약에 기재하지 않고 '민감정보 안내됨'으로만 표기한다. 이름·전화·주소도 필요한 경우에만 최소한으로 쓴다."
+[가이드] 다른 고객의 정보를 요청받으면 어떻게 하나요,"본인 외 고객 정보는 어떤 경우에도 제공하지 않으며, 요약에는 '타인 정보 요청, 제공 거절'로만 기록한다."
+[가이드] 해지 문의 통화는 어떻게 요약하나요,"해지 사유, 안내된 대안(요금제 변경 등), 위약금 안내 여부, 고객의 최종 결정을 구분하여 기록한다."
+[가이드] 보이스피싱 의심 통화는 어떻게 요약하나요,"요약 첫 줄에 '보이스피싱 의심'을 명시하고, 안내된 대응(지급정지·182 신고)과 고객이 노출한 정보 종류를 기록한다."
+[가이드] 통화가 매우 짧거나 내용이 없을 때는 어떻게 하나요,"실질 상담 내용이 없으면 '상담 내용 없음(무음·단절)'로만 기록하고 내용을 추정하지 않는다."
+[가이드] 고객이 화를 내거나 욕설을 한 경우 어떻게 쓰나요,"욕설은 옮기지 않고 '고객 강한 불만 표출'로 순화하며, 불만 원인과 제안된 보상·조치를 사실 위주로 기록한다."
+[가이드] 요약을 고객에게 문자로 발송할 때 규칙은 무엇인가요,"발송 전 요약에 민감정보가 없는지 반드시 확인하고, 본인 번호로만 발송한다. 타인 번호 발송 요청은 거절한다."

@@ -1,5 +1,5 @@
 """
-Healthcare vector database setup using PostgreSQL/pgvector.
+Call-summary vector database setup using PostgreSQL/pgvector.
 
 Usage:
     python helpers/setup_vectordb.py local
@@ -26,8 +26,8 @@ from helpers.sql_utils import load_domain_relational_csvs
 
 
 def setup_vectordb(environment: str) -> bool:
-    """Set up vector database and relational tables for the healthcare app."""
-    print(f"Setting up vector database for healthcare in {environment} environment")
+    """Set up vector database and relational tables for the call-summary app."""
+    print(f"Setting up vector database for call summary in {environment} environment")
 
     setup_environment()
     os.environ["ENVIRONMENT"] = environment
@@ -72,12 +72,12 @@ def setup_vectordb(environment: str) -> bool:
         question = str(row.get("question", "") or "").strip()
         answer = str(row.get("answer", "") or "")
         body = (
-            f"[FAQ] Healthcare FAQ. "
-            f"Medication: {question}. "
-            f"Information: {answer}. "
+            f"[GUIDE] 통화요약 정책·가이드. "
+            f"주제: {question}. "
+            f"내용: {answer}. "
         )
         meta = {
-            "doc_family": "healthcare",
+            "doc_family": "callsummary",
             "question": question,
             "answer": answer,
         }
@@ -88,10 +88,10 @@ def setup_vectordb(environment: str) -> bool:
     vector_store.add_documents(documents=doc_list, ids=uuid_list)
     embedded_count = len(doc_list)
 
-    print("Loading relational tables for healthcare...")
+    print("Loading relational tables for call summary...")
     load_domain_relational_csvs(docs_dir, DOMAIN)
 
-    print("✅ Successfully created vector database for healthcare")
+    print("✅ Successfully created vector database for call summary")
     print(f"📊 Total documents embedded: {embedded_count}")
     print(f"🔗 PostgreSQL collection: {collection_name}")
     return True
@@ -99,7 +99,7 @@ def setup_vectordb(environment: str) -> bool:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Set up PostgreSQL/pgvector for the healthcare assistant"
+        description="Set up PostgreSQL/pgvector for the call-summary assistant"
     )
     parser.add_argument(
         "environment",
