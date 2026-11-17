@@ -19,7 +19,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from config import DOCS_DIR, DOMAIN, load_config
 from langchain_core.documents import Document
-from langchain_openai import OpenAIEmbeddings
+from llm_factory import get_embeddings
 from setup_env import setup_environment
 from helpers.pgvector_utils import create_pgvector_store, get_collection_name
 from helpers.sql_utils import load_domain_relational_csvs
@@ -38,7 +38,7 @@ def setup_vectordb(environment: str) -> bool:
 
     chunk_size = rag_config.get("chunk_size", 1000)
     chunk_overlap = rag_config.get("chunk_overlap", 200)
-    embedding_model = vectorstore_config.get("embedding_model", "text-embedding-3-large")
+    embedding_model = vectorstore_config.get("embedding_model", "amazon.titan-embed-text-v2:0")
 
     print(f"Using chunk_size: {chunk_size}, chunk_overlap: {chunk_overlap}")
     print(f"Using embedding model: {embedding_model}")
@@ -48,13 +48,10 @@ def setup_vectordb(environment: str) -> bool:
         print(f"❌ Docs directory not found: {docs_dir}")
         return False
 
-    if not os.environ.get("OPENAI_API_KEY"):
-        os.environ["OPENAI_API_KEY"] = getpass.getpass("Enter API key for OpenAI: ")
-
     if not os.environ.get("POSTGRES_PASSWORD"):
         os.environ["POSTGRES_PASSWORD"] = getpass.getpass("Enter PostgreSQL password: ")
 
-    embeddings = OpenAIEmbeddings(model=embedding_model)
+    embeddings = get_embeddings(embedding_model)
     collection_name = get_collection_name(DOMAIN, environment)
     print(f"Creating PostgreSQL/pgvector collection: {collection_name}")
     vector_store, collection_name = create_pgvector_store(

@@ -30,7 +30,7 @@ def _get_vector_store() -> Tuple[PGVector, str]:
 
     app_config = load_config()
     embedding_model = (
-        app_config.get("vectorstore", {}).get("embedding_model") or "text-embedding-3-large"
+        app_config.get("vectorstore", {}).get("embedding_model") or "amazon.titan-embed-text-v2:0"
     )
 
     if (
@@ -72,7 +72,7 @@ async def get_patient_info(patient_id: str) -> str:
         return json.dumps({"error": "patient_id is required"})
 
     app_config = load_config()
-    model = app_config.get("model", {}).get("default_model", "gpt-4o-mini")
+    model = app_config.get("model", {}).get("default_model", "bedrock-default")
     table_name = relational_table_name(DOMAIN, _TABLE_SUFFIX)
 
     try:
@@ -110,7 +110,7 @@ async def delete_patient_record(patient_id: str) -> str:
         return json.dumps({"error": "patient_id is required"})
 
     app_config = load_config()
-    model = app_config.get("model", {}).get("default_model", "gpt-4o-mini")
+    model = app_config.get("model", {}).get("default_model", "bedrock-default")
     table_name = relational_table_name(DOMAIN, _TABLE_SUFFIX)
 
     try:
