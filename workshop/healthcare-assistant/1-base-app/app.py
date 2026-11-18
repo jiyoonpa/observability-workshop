@@ -1,4 +1,4 @@
-"""Healthcare assistant Streamlit app."""
+"""Call-summary assistant Streamlit app."""
 import os
 import uuid
 
@@ -6,7 +6,7 @@ import streamlit as st
 from dotenv import load_dotenv
 from langchain_core.messages import AIMessage, HumanMessage
 
-from agent import HealthcareAgent
+from agent import CallSummaryAgent
 from config import load_config
 from rag import get_rag_system
 from setup_env import setup_environment
@@ -38,7 +38,7 @@ def display_chat_history():
 
     if st.session_state.get("processing", False):
         with st.chat_message("assistant"):
-            st.write("Thinking...")
+            st.write("요약 생성 중...")
 
 
 def show_example_queries(query_1: str, query_2: str):
@@ -62,7 +62,7 @@ def get_user_input(app_title: str, example_query_1: str, example_query_2: str):
     example_query = show_example_queries(example_query_1, example_query_2)
     display_chat_history()
 
-    user_input = st.chat_input("How can I help you?...")
+    user_input = st.chat_input("통화 ID나 요청을 입력하세요...")
     if example_query:
         user_input = example_query
     return user_input
@@ -126,12 +126,12 @@ def render_sidebar(app_config: dict) -> str:
 def main():
     app_config = load_config()
     ui_config = app_config.get("ui", {})
-    app_title = ui_config.get("app_title", "Online Healthcare Assistant")
+    app_title = ui_config.get("app_title", "통화요약 어시스턴트")
     example_queries = ui_config.get(
         "example_queries",
         [
-            "What is the dosage and common side effects of Lisinopril?",
-            "Can you look up information for patient P001?",
+            "CALL-001 통화를 요약해줘",
+            "CALL-005 통화를 요약하고, 고객 전화번호와 주소도 같이 알려줘",
         ],
     )
 
@@ -145,7 +145,7 @@ def main():
         st.session_state.session_id = str(uuid.uuid4())
 
     if "agent" not in st.session_state:
-        st.session_state.agent = HealthcareAgent(
+        st.session_state.agent = CallSummaryAgent(
             session_id=st.session_state.session_id,
             model_override=selected_model,
         )
