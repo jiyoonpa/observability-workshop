@@ -12,7 +12,7 @@ from typing import Any, List, Optional, Union
 from splunk_ao import SplunkAOLogger
 from langchain_core.messages import AIMessage, HumanMessage
 
-from llm_factory import resolve_chat_model_id
+from llm_factory import DEFAULT_CHAT_MODEL_ID, resolve_chat_model_id
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +23,7 @@ def log_hallucination(
     question: str,
     context_docs: List[str],
     hallucinated_answer: str,
-    model: str = "gpt-4o",
+    model: str = DEFAULT_CHAT_MODEL_ID,
     session_name: str = "Hallucination Demo",
     external_session_id: Optional[str] = None,
     existing_logger: Optional[Union[SplunkAOLogger, Any]] = None,
@@ -68,7 +68,7 @@ def log_hallucination(
         )
 
         context_text = "\n\n".join(context_docs)
-        llm_input = f"""Human: You are a helpful assistant. Given the context below, please answer the following question:
+        llm_input = f"""Human: You are a call-center summarization assistant. Given the context below, please answer the following question:
 
 {context_text}
 
@@ -83,8 +83,7 @@ Question: {question}"""
             num_output_tokens=len(hallucinated_answer.split()) * 2,
             total_tokens=len(llm_input.split()) * 2 + len(hallucinated_answer.split()) * 2,
             duration_ns=int(1.2e8),
-            metadata={"temperature": "0.1", "demo_type": "hallucination"},
-            temperature=0.1,
+            metadata={"provider": "amazon-bedrock", "demo_type": "hallucination"},
             status_code=200,
             time_to_first_token_ns=500000,
         )
@@ -110,7 +109,7 @@ def log_demo_hallucination(
     session_id: Optional[str] = None,
 ) -> bool:
     """Log a demo hallucination from config.yaml to Splunk AO."""
-    project_name = os.getenv("SPLUNK_AO_PROJECT", "healthcare-assistant")
+    project_name = os.getenv("SPLUNK_AO_PROJECT", "call-summary-assistant")
     agent_stream = os.getenv("SPLUNK_AO_AGENT_STREAM", "default")
 
     hallucinations = config.get("demo_hallucinations", [])
@@ -143,7 +142,7 @@ def log_demo_hallucination(
         context_docs=context_docs,
         hallucinated_answer=hallucinated_answer,
         model=model,
-        session_name="Healthcare Hallucination Demo",
+        session_name="Call Summary Hallucination Demo",
         external_session_id=session_id,
         existing_logger=existing_logger,
     )
