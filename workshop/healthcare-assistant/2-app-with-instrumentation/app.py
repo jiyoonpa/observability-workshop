@@ -157,7 +157,7 @@ def render_sidebar(app_config: dict) -> str:
 def main():
     app_config = load_config()
     ui_config = app_config.get("ui", {})
-    app_title = ui_config.get("app_title", "ixi 통화요약 어시스턴트")
+    app_title = ui_config.get("app_title", "통신사 통화요약 어시스턴트")
     example_queries = ui_config.get(
         "example_queries",
         [
