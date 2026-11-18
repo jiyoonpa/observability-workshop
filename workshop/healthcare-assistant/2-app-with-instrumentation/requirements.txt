@@ -14,3 +14,6 @@ pyyaml
 toml
 pandas
 splunk-ao
+langchain-aws
+boto3
+botocore[crt]

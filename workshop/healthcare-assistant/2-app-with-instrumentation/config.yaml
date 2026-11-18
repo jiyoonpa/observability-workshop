@@ -10,7 +10,8 @@ ui:
     - "Can you look up information for patient P001?"
 
 model:
-  default_model: "gpt-4.1-mini"
+  # "bedrock-default" resolves to BEDROCK_CHAT_MODEL_ID (default: global.openai.gpt-6.1-sol).
+  default_model: "bedrock-default"
   temperature: 0.1
 
 rag:
@@ -25,7 +26,7 @@ tools:
   - "search_medicine_qa"
 
 vectorstore:
-  embedding_model: "text-embedding-3-large"
+  embedding_model: "amazon.titan-embed-text-v2:0"
 
 # Demo hallucinations for Splunk Agent Observability
 demo_hallucinations:

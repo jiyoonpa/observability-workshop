@@ -8,13 +8,13 @@ from typing import Annotated, List, Dict, Optional, TypedDict
 
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, SystemMessage
 from langchain_core.tools import StructuredTool
-from langchain_openai import ChatOpenAI
 from langgraph.graph import START, StateGraph
 from langgraph.graph.state import CompiledStateGraph
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode, tools_condition
 
 from config import TOOLS_DIR, load_config, load_system_prompt
+from llm_factory import get_chat_model
 from rag import create_rag_tool
 from tools import logic as tools_logic
 
@@ -135,7 +135,7 @@ class CallSummaryAgent:
         )
         temperature = model_config.get("temperature", 0.1)
 
-        llm_with_tools = ChatOpenAI(
+        llm_with_tools = get_chat_model(
             model=effective_model,
             temperature=temperature,
             name="Call Summary Assistant",
@@ -183,7 +183,8 @@ class CallSummaryAgent:
                 run_config,
             )
         if result["messages"]:
-            return result["messages"][-1].content
+            # Responses API returns a list of content blocks; .text joins them into a str.
+            return str(result["messages"][-1].text)
         return "No response generated"
 
     def process_query(self, messages: List[Dict[str, str]]) -> str:

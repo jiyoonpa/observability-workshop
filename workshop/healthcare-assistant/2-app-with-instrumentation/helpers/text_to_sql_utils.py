@@ -74,4 +74,4 @@ async def generate_sql(
     response = await llm.ainvoke(
         [SystemMessage(content=system_prompt), HumanMessage(content=user_prompt)]
     )
-    return _strip_sql_fences(str(response.content))
+    return _strip_sql_fences(str(response.text))

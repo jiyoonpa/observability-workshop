@@ -12,6 +12,8 @@ from typing import Any, List, Optional, Union
 from splunk_ao import SplunkAOLogger
 from langchain_core.messages import AIMessage, HumanMessage
 
+from llm_factory import resolve_chat_model_id
+
 logger = logging.getLogger(__name__)
 
 
@@ -132,7 +134,7 @@ def log_demo_hallucination(
         context_docs = ["[No context available]"]
 
     model_config = config.get("model", {})
-    model = model_config.get("default_model", "gpt-4o")
+    model = resolve_chat_model_id(model_config.get("default_model"))
 
     return log_hallucination(
         project_name=project_name,

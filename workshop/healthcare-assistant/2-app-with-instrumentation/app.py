@@ -102,7 +102,7 @@ def render_sidebar(app_config: dict) -> str:
     with st.sidebar:
         st.subheader("Model")
         model_config = app_config.get("model", {})
-        default_model = model_config.get("default_model", "gpt-4.1-mini")
+        default_model = model_config.get("default_model", "bedrock-default")
         additional_models = model_config.get("additional_models", [])
         available_models = [default_model] + [
             m for m in additional_models if m != default_model
@@ -117,7 +117,7 @@ def render_sidebar(app_config: dict) -> str:
                 if previous_model in available_models
                 else 0
             ),
-            help="OpenAI model used for chat",
+            help="OpenAI model hosted on Amazon Bedrock",
         )
 
         if previous_model != selected_model and "agent" in st.session_state:
