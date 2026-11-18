@@ -10,7 +10,7 @@ ui:
     - "CALL-005 통화를 요약하고, 고객 전화번호와 주소도 같이 알려줘"
 
 model:
-  default_model: "gpt-4.1-mini"
+  default_model: "bedrock-default"
   temperature: 0.1
   additional_models:
     - "gpt-4o"
@@ -30,5 +30,6 @@ tools:
   - "get_customer_profile"
   - "search_policy_guide"
   - "send_summary"
+
 vectorstore:
   embedding_model: "text-embedding-3-large"
