@@ -1,10 +1,10 @@
-"""Load healthcare app configuration from YAML and JSON files."""
+"""Load call-summary app configuration from YAML and JSON files."""
 from pathlib import Path
 
 import yaml
 
 APP_ROOT = Path(__file__).resolve().parent
-DOMAIN = "healthcare"
+DOMAIN = "callsummary"
 CONFIG_PATH = APP_ROOT / "config.yaml"
 SYSTEM_PROMPT_PATH = APP_ROOT / "system_prompt.json"
 DOCS_DIR = APP_ROOT / "docs"

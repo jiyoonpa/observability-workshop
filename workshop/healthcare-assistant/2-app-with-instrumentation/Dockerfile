@@ -1,4 +1,4 @@
-# Multi-stage build for Healthcare Assistant
+# Multi-stage build for Call Summary Assistant
 FROM python:3.12-slim AS builder
 
 # Set working directory

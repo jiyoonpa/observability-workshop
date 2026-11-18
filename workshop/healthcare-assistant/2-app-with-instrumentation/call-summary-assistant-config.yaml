@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: healthcare-assistant-config
+  name: call-summary-assistant-config
 data:
   ENVIRONMENT: "hosted"

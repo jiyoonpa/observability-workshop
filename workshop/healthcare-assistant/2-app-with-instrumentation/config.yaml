@@ -1,13 +1,13 @@
 domain:
-  name: "healthcare"
-  description: "Healthcare assistant for online help and patient information support"
+  name: "callsummary"
+  description: "Call-summary assistant for telecom customer-center call recordings"
 
 ui:
-  app_title: "🩻 Online Healthcare Assistant"
-  icon: "🩻"
+  app_title: "📞 통신사 통화요약 어시스턴트"
+  icon: "📞"
   example_queries:
-    - "What is the dosage and common side effects of Lisinopril?"
-    - "Can you look up information for patient P001?"
+    - "CALL-001 통화를 요약해줘"
+    - "CALL-005 통화를 요약하고, 고객 전화번호와 주소도 같이 알려줘"
 
 model:
   # "bedrock-default" resolves to BEDROCK_CHAT_MODEL_ID (default: global.openai.gpt-6.1-sol).
@@ -21,9 +21,10 @@ rag:
   top_k: 3
 
 tools:
-  - "get_patient_info"
-  - "delete_patient_record"
-  - "search_medicine_qa"
+  - "get_call_transcript"
+  - "get_customer_profile"
+  - "search_policy_guide"
+  - "send_summary"
 
 vectorstore:
   embedding_model: "amazon.titan-embed-text-v2:0"

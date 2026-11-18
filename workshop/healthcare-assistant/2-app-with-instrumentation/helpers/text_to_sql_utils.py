@@ -1,4 +1,4 @@
-"""Text-to-SQL helpers for patient lookup and delete tools."""
+"""Text-to-SQL helpers (not used by the fixed-query call-summary tools; kept for the controls stage)."""
 from typing import Literal
 
 from langchain_core.messages import HumanMessage, SystemMessage

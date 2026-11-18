@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: healthcare-assistant
+  name: call-summary-assistant
   labels:
-    app: healthcare-assistant
+    app: call-summary-assistant
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: healthcare-assistant
+      app: call-summary-assistant
   template:
     metadata:
       labels:
-        app: healthcare-assistant
+        app: call-summary-assistant
     spec:
       containers:
-        - name: healthcare-assistant
-          image: ghcr.io/splunk/healthcare-assistant:app-with-instrumentation-v3
+        - name: call-summary-assistant
+          image: 851725344234.dkr.ecr.ap-northeast-2.amazonaws.com/call-summary-assistant:app-with-instrumentation
           imagePullPolicy: Always
           ports:
             - containerPort: 8501
               name: http
           envFrom:
             - configMapRef:
-                name: healthcare-assistant-config
+                name: call-summary-assistant-config
             - configMapRef:
                 name: postgres-config
             - configMapRef:
@@ -68,10 +68,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: healthcare-assistant-service
+  name: call-summary-assistant-service
 spec:
   selector:
-    app: healthcare-assistant
+    app: call-summary-assistant
   ports:
     - port: 8501
       protocol: TCP
@@ -80,7 +80,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: healthcare-assistant-ingress
+  name: call-summary-assistant-ingress
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
@@ -92,6 +92,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: healthcare-assistant-service
+                name: call-summary-assistant-service
                 port:
                   number: 8501

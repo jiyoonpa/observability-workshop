@@ -1,16 +1,13 @@
 input,output
-Can you look up information for patient P001?,I'll look up patient P001 using the get_patient_info tool.
-What is the dosage and common side effects of Lisinopril?,I'll search the medicine knowledge base for Lisinopril dosage and side effects using search_medicine_qa.
-Get patient details for P005 including prescription information.,I'll retrieve patient P005's details including prescription using get_patient_info.
-What is Metformin used for?,I'll search the medicine knowledge base for Metformin uses using search_medicine_qa.
-Check for drug interactions between Lisinopril and Aspirin,I'll search the medicine knowledge base for interactions between Lisinopril and Aspirin using search_medicine_qa.
-What are the warnings for Levothyroxine?,I'll search the medicine knowledge base for Levothyroxine warnings using search_medicine_qa.
-Get patient information for patient ID P003,I'll retrieve patient P003's information using get_patient_info.
-What are the common dosages for Atorvastatin?,I'll search the medicine knowledge base for Atorvastatin dosages using search_medicine_qa.
-What information do you have on patient P010?,I'll look up patient P010 using the get_patient_info tool.
-What are the serious side effects of Aspirin?,I'll search the medicine knowledge base for Aspirin's serious side effects using search_medicine_qa.
-Delete patient record P029 from the registry,I'll delete patient P029's record using the delete_patient_record tool.
-What is the drug class for Metformin?,I'll search the medicine knowledge base for Metformin's drug classification using search_medicine_qa.
-Get patient info for P002 and their current prescription,I'll retrieve patient P002's information including their prescription using get_patient_info.
-Can you check interactions between Atorvastatin and Aspirin?,I'll search the medicine knowledge base for interactions between Atorvastatin and Aspirin using search_medicine_qa.
-Remove patient P030 from the system permanently,I'll permanently delete patient P030's record using delete_patient_record.
+CALL-001 통화를 요약해줘,VOD 유료 콘텐츠 2건(6천 원) 추가 결제로 요금 증가 안내. 고객은 이해. 유료 결제 전 비밀번호 확인 설정 완료.
+CALL-002 통화를 요약해줘,"베이직에서 프리미엄으로 변경 신청(월 12,000원 추가). 약 10분 내 적용."
+CALL-003 통화를 요약해줘,스포츠 채널 화면 끊김 신고. 재부팅 효과 없음. 11/5 14~16시 기사 방문 예약.
+CALL-004 통화를 요약해줘,"해지 문의. 베이직 변경 시 월 8,000원 절감 안내. 약정 2026-12 잔여, 위약금 약 15,000원. 고객은 오늘 해지하지 않기로 결정."
+CALL-005 통화를 요약해줘,자동이체 카드 변경 요청. 본인 확인 후 다음 달 청구분부터 새 카드 적용. 민감정보 안내됨.
+CALL-006 통화를 요약해줘,타인(이웃) 고객 정보 요청. 규정상 제공 거절. 택배사 문의 안내.
+CALL-007 통화를 요약해줘,보이스피싱 의심. 고객이 계좌번호 노출. 지급정지 요청 및 182 신고 안내.
+CALL-008 통화를 요약해줘,요금 이중 청구 의심. 통화 품질로 정확한 금액 확인 불가. 확인 후 연락 예정.
+CALL-009 통화를 요약해줘,"3개 주제. (1) 셋톱박스 추가 임대료 5천 원 청구 이의: 안내 미흡으로 요금 감면 검토 요청, 결과는 3영업일 내 문자 안내(확정 아님). (2) 두 번째 셋톱박스 재부팅 문제: 원격 재설정 후 호전, 지속 시 교체 접수. (3) 이전 설치: 11/22 오전 예약 확정, 11/20 오후 대기(미확정), 비용 29,700원(프리미엄 10% 할인), 이전 기간 모바일 앱 이용료 무료."
+CALL-010 통화를 요약해줘,인터넷 일주일째 장애에 대한 강한 불만. 소비자원 신고 언급. 당일 기사 방문 및 1개월 요금 감면 안내.
+CALL-011 통화를 요약해줘,상담 내용 없음(무음·단절).
+CALL-012 통화를 요약해줘,"키즈 채널 패키지 추가(월 5,500원). 11/14부터 시청 가능. 청구는 다음 달부터 합산."

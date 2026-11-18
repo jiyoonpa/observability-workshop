@@ -22,14 +22,14 @@ spec:
                 name: postgres-config
       containers:
         - name: setup
-          image: ghcr.io/splunk/healthcare-assistant:base-app
+          image: 851725344234.dkr.ecr.ap-northeast-2.amazonaws.com/call-summary-assistant:app-with-instrumentation
           imagePullPolicy: Always
           command: ["python", "helpers/setup_vectordb.py", "hosted"]
           envFrom:
             - configMapRef:
                 name: postgres-config
             - configMapRef:
-                name: healthcare-assistant-config
+                name: call-summary-assistant-config
           env:
             - name: POSTGRES_PASSWORD
               valueFrom:
