@@ -4,6 +4,9 @@ python-dotenv
 langchain
 langchain-core
 langchain-openai
+langchain-aws
+boto3
+botocore[crt]
 langgraph
 langchain-postgres
 psycopg[binary]

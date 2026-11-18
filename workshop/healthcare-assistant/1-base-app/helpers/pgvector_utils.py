@@ -2,9 +2,11 @@
 import os
 from typing import Optional, Tuple
 
-from langchain_openai import OpenAIEmbeddings
+from langchain_core.embeddings import Embeddings
 from langchain_postgres import PGVector
 from sqlalchemy import create_engine, text
+
+from llm_factory import get_embeddings
 
 
 def get_postgres_connection_string() -> str:
@@ -36,7 +38,7 @@ def collection_exists(domain_name: str, environment: Optional[str] = None) -> bo
 
 
 def create_pgvector_store(
-    embeddings: OpenAIEmbeddings,
+    embeddings: Embeddings,
     domain_name: str,
     environment: Optional[str] = None,
     *,
@@ -56,7 +58,7 @@ def create_pgvector_store(
 
 def get_pgvector_store(
     domain_name: str,
-    embedding_model: str = "text-embedding-3-large",
+    embedding_model: str = "amazon.titan-embed-text-v2:0",
     environment: Optional[str] = None,
 ) -> Tuple[PGVector, str]:
     """Return a PGVector store for retrieval, raising if the collection is missing."""
@@ -69,5 +71,5 @@ def get_pgvector_store(
             f"Run: python helpers/setup_vectordb.py {env}"
         )
 
-    embeddings = OpenAIEmbeddings(model=embedding_model)
+    embeddings = get_embeddings(embedding_model)
     return create_pgvector_store(embeddings, domain_name, env)

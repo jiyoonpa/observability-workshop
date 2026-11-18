@@ -7,9 +7,9 @@ from langchain_classic.chains import create_retrieval_chain
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.tools import tool
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
 from config import DOMAIN, load_config
+from llm_factory import get_chat_model, get_embeddings
 from helpers.pgvector_utils import collection_exists, create_pgvector_store
 from setup_env import setup_environment
 
@@ -36,11 +36,11 @@ class CallSummaryRAGSystem:
             vectorstore_config = app_config.get("vectorstore", {})
             model_config = app_config.get("model", {})
 
-            embedding_model = vectorstore_config.get("embedding_model", "text-embedding-3-large")
+            embedding_model = vectorstore_config.get("embedding_model", "amazon.titan-embed-text-v2:0")
             llm_model = (
                 self.model_name
                 or model_config.get("default_model")
-                or model_config.get("model_name", "gpt-4o")
+                or model_config.get("model_name", "bedrock-default")
             )
 
             setup_environment()
@@ -58,11 +58,11 @@ class CallSummaryRAGSystem:
                     f"Please run: python helpers/setup_vectordb.py {environment}"
                 )
 
-            embeddings = OpenAIEmbeddings(model=embedding_model)
+            embeddings = get_embeddings(embedding_model)
             vector_store, _ = create_pgvector_store(embeddings, DOMAIN, environment)
             retriever = vector_store.as_retriever(search_kwargs={"k": self.top_k})
 
-            llm = ChatOpenAI(
+            llm = get_chat_model(
                 model=llm_model,
                 temperature=0.1,
                 name="Policy RAG Assistant",
