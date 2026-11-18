@@ -1,4 +1,4 @@
-"""LangGraph agent for the healthcare assistant."""
+"""LangGraph agent for the call-summary assistant."""
 import asyncio
 import inspect
 import json
@@ -67,8 +67,8 @@ def _run_async(coro):
     return asyncio.run_coroutine_threadsafe(coro, loop).result()
 
 
-class HealthcareAgent:
-    """LangGraph healthcare assistant."""
+class CallSummaryAgent:
+    """LangGraph call-summary assistant."""
 
     def __init__(
         self,
@@ -138,7 +138,7 @@ class HealthcareAgent:
         llm_with_tools = ChatOpenAI(
             model=effective_model,
             temperature=temperature,
-            name="Healthcare Assistant",
+            name="Call Summary Assistant",
         ).bind_tools(self.tools)
 
         async def invoke_chatbot(state):
