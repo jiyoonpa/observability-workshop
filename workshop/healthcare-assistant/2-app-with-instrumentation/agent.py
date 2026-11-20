@@ -19,7 +19,10 @@ from rag import create_rag_tool
 from tools import logic as tools_logic
 
 import os
+# 추가 1
 from splunk_ao import splunk_ao_context
+
+#추가 2
 from splunk_ao.handlers.langchain import SplunkAOAsyncCallback
 
 from splunk_ao.utils.log_config import enable_console_logging
@@ -167,14 +170,26 @@ class CallSummaryAgent:
                 langchain_messages.append(HumanMessage(content=msg["content"]))
             elif msg["role"] == "assistant":
                 langchain_messages.append(AIMessage(content=msg["content"]))
-
+    
+        # 추가 3- 컨텍스트, 세션 지정
         with splunk_ao_context(
             project=os.getenv("SPLUNK_AO_PROJECT"),
             agent_stream=os.getenv("SPLUNK_AO_AGENT_STREAM"),
         ):
+            # Workaround for an intermittent hang (SDK deadlock): start_session() lazily resolves the
+            # project/agent stream from *inside* the SDK's own event-loop thread pool, and that nested
+            # sync call can pick the same busy thread and wait on itself forever. Resolving the IDs
+            # here, on a non-pool thread, makes start_session() skip that nested call.
+            try:
+                splunk_ao_context.get_logger_instance()._ensure_session_crud_client()
+            except Exception as e:  # tracing must never block answering
+                print(f"[WARN] Splunk AO warm-up failed: {e}")
+
             splunk_ao_context.start_session(external_id=self.session_id)
 
             # One callback per request keeps each user turn in its own trace.
+            # 콜백 연결 - 콜백이 LangGraph 실행 중에 LLM 호출, 도구 호출, RAG를 자동으로 span으로 기록하는데
+            # 이 기록이 evaluator와 Signals가 분석하는 원본 데이터가 됨
             callback = SplunkAOAsyncCallback()
             run_config = {**self.langgraph_config, "callbacks": [callback]}
 
