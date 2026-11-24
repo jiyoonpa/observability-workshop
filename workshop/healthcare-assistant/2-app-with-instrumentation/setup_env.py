@@ -9,8 +9,7 @@ REQUIRED_ENV_VARS = [
     "POSTGRES_PASSWORD",
     "POSTGRES_DB",
     "ENVIRONMENT",
-    "SPLUNK_AO_PROJECT",
-    "SPLUNK_AO_AGENT_STREAM"
+    "SPLUNK_AO_PROJECT"
 ]
 
 # O11y deployment requires REALM + token; standalone requires API_KEY + console URL.
